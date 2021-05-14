@@ -17,9 +17,6 @@ class ExpandViewController: UIViewController {
     
     @IBOutlet weak var sampleTreeView: CITreeView!
     
-    let treeViewCellIdentifier = "TreeViewCellIdentifier"
-    let treeViewCellNibName = "CITreeViewCell"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -29,7 +26,7 @@ class ExpandViewController: UIViewController {
     
     func setupUI()  {
         sampleTreeView.collapseNoneSelectedRows = false
-        sampleTreeView.register(UINib(nibName: treeViewCellNibName, bundle: nil), forCellReuseIdentifier: treeViewCellIdentifier)
+        sampleTreeView.register(UINib(nibName: "CITreeViewCell", bundle: nil), forCellReuseIdentifier: "CITreeViewCell")
     }
     
     func setupModel()  {
@@ -121,7 +118,7 @@ extension ExpandViewController : CITreeViewDataSource {
     }
     
     func treeView(_ treeView: CITreeView, cellForRowAt indexPath: IndexPath, with treeViewNode: CITreeViewNode) -> UITableViewCell {
-        let cell = treeView.dequeueReusableCell(withIdentifier: treeViewCellIdentifier) as! CITreeViewCell
+        let cell = treeView.dequeueReusableCell(withIdentifier: "CITreeViewCell") as! CITreeViewCell
         cell.viewModel = ExpandViewModel(expandData: treeViewNode.item as! ExpandModel, ViewNode: treeViewNode,selectedIndex: SelectedIndex,index : indexPath.row)
         return cell;
     }
